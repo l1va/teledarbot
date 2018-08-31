@@ -15,7 +15,7 @@ def get_service():
     if not creds or creds.invalid:
         flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
         creds = tools.run_flow(flow, store)
-    return build('calendar', 'v3', http=creds.authorize(Http()))
+    return build('calendar', 'v3', http=creds.authorize(Http()), cache_discovery=False)
 
 
 def get_events():
@@ -29,7 +29,7 @@ def get_events():
 
     now = datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
     end_date = (datetime.utcnow() + timedelta(days=DAYS_DELTA)).isoformat() + 'Z'
-    events_result = service.events().list(calendarId='2di64vinvci5d7hb7n13vdv3ok@group.calendar.google.com',
+    events_result = service.events().list(calendarId='primary',
                                           timeMin=now, timeMax=end_date,
                                           singleEvents=True,
                                           orderBy='startTime').execute()
