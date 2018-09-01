@@ -9,9 +9,9 @@ and put your <b>TOKEN</b> in bot.py
 3. Run locally or [Push to heroku](https://devcenter.heroku.com/articles/git) or 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-To run: `python3 bot.py`
+To run locally: `python3 bot.py`
 
-Or: `heroku run python3 bot.py`
+Or on heroku: `heroku scale worker=1`
 
 
 ps. I am NOT suggesting to put your credentials to heroku.
