@@ -6,10 +6,9 @@ from get_events import get_events
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-# TOKEN = 'YOUR_TOKEN'
-TOKEN = '655316461:AAHJCx-Mn1EJV3SVqcSY7CVBgt6DveiCGA8'
+TOKEN = 'YOUR_TOKEN'
 REQUEST_KWARGS = {
-    'proxy_url': 'http://213.239.209.51:3128',
+    #'proxy_url': 'http://213.239.209.51:3128',
     # Optional, if you need authentication:
     # 'urllib3_proxy_kwargs': {
     #     'username': 'PROXY_USER',
