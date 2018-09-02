@@ -8,7 +8,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 TOKEN = 'YOUR_TOKEN'
 REQUEST_KWARGS = {
-    #'proxy_url': 'http://213.239.209.51:3128',
+    # 'proxy_url': 'http://213.239.209.51:3128',
     # Optional, if you need authentication:
     # 'urllib3_proxy_kwargs': {
     #     'username': 'PROXY_USER',
@@ -33,8 +33,9 @@ def calendar(bot, update):
     events = get_events()
     res = ""
     for ev in events:
-        res += str(ev[0]) + ' ' + str(ev[1]) + '\n'
-    if len(events)==0:
+        tm = ev[0].strftime("%H:%M") + "-" + ev[2].strftime("%H:%M")
+        res += tm + ' ' + str(ev[1]) + '\n'
+    if len(events) == 0:
         res = "no events found for next 24h"
     bot.send_message(chat_id=update.message.chat_id, text=res)
 

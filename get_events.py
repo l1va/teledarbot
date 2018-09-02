@@ -7,7 +7,7 @@ from oauth2client import file, client, tools
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 DAYS_DELTA = 1
-
+DATETIME_TEMPLATE = '%Y-%m-%dT%H:%M:%S' #2018-09-03T14:10:00+03:00 i cut last 6 symbols
 
 def get_service():
     store = file.Storage('token.json')
@@ -37,8 +37,11 @@ def get_events():
     res = []
     for event in events:
         start = event['start'].get('dateTime')
-        res.append((start, event['summary']))
-    return res
+        dt = datetime.strptime(start[:-6], DATETIME_TEMPLATE)  # 2018-09-03T14:10:00+03:00
+        end = event['end'].get('dateTime')
+        dt_end = datetime.strptime(end[:-6], DATETIME_TEMPLATE)
+        res.append((dt, event['summary'], dt_end))
+    return res # [(start, summary, end),...]
 
 
 if __name__ == '__main__':
